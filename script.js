@@ -4,6 +4,7 @@ const recipes = [
     id: "tomatpasta",
     title: "Krämig tomatpasta",
     time: "20 min", servings: 2,
+    tags: ["billigt","snabbt","vego"],
     emoji: "🍝",
     ingredients: [
       "250 g pasta",
