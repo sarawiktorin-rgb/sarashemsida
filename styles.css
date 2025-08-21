@@ -161,3 +161,36 @@ body{
   .modal-header{flex-direction:column}
   .modal-header img{width:100%; height:220px}
 }
+/* ----- HERO / HEADERBILD ----- */
+:root{
+  /* Byt gärna till din egen hostade bild när du har licensen lokalt */
+  --hero-img: url("https://media.istockphoto.com/id/1449032425/sv/foto/shopping-bag-full-of-healthy-food-on-blue.jpg?s=612x612&w=0&k=20&c=J7tHPI1dRjaqWiWAPL7XuHJl_weRvJpQJhlZ-3MVoeo=");
+}
+
+.hero{
+  max-width:1200px;
+  margin:12px auto 0;
+  padding:0;
+  min-height: clamp(180px, 28vw, 380px); /* responsiv höjd */
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid #e8f2ec;
+  box-shadow: var(--shadow);
+
+  /* Bild + toning i lager */
+  background-image:
+    linear-gradient(135deg, rgba(10,61,46,.45), rgba(247,215,116,.25)),
+    var(--hero-img);
+  background-size: cover;
+  background-position: center right;
+}
+
+/* Liten glans/glas-effekt överst (dekorativt) */
+.hero::after{
+  content:"";
+  position:inherit;
+  display:block;
+  width:100%; height:40%;
+  background:linear-gradient(180deg, rgba(255,255,255,.22), transparent 60%);
+  pointer-events:none;
+}
