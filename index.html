@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Billig studentmat – Enkla, billiga och snabba recept</title>
+  <meta name="description" content="Enkla, billiga och snabba recept för studenter. Sök, filtrera och skapa inköpslista." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Topbar / Hero -->
+  <header class="site-header" role="banner">
+    <div class="brand">
+      <!-- Enkel egen logga (SVG): studentmössa + bestick -->
+      <svg class="logo" viewBox="0 0 120 120" aria-hidden="true">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#88d498"/>
+            <stop offset="1" stop-color="#f7d774"/>
+          </linearGradient>
+        </defs>
+        <circle cx="60" cy="60" r="58" fill="url(#g)" />
+        <!-- Mössa -->
+        <path d="M18 42l42-16 42 16-42 16-42-16z" fill="#0a3d2e"/>
+        <rect x="28" y="46" width="64" height="10" rx="5" fill="#ffffff"/>
+        <!-- Bestick (gaffel + sked) -->
+        <path d="M80 26l8 8-48 48-8-8z" fill="#0a3d2e" opacity=".9"/>
+        <path d="M44 82c-4 4-11 4-15 0s-4-11 0-15l21-21 15 15-21 21z" fill="#0a3d2e" opacity=".6"/>
+      </svg>
+      <div class="titles">
+        <h1>Billig studentmat</h1>
+        <p class="subtitle">Enkla, billiga och snabba recept för dig som är student</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="search">
+        <label for="searchInput" class="visually-hidden">Sök recept</label>
+        <input id="searchInput" type="search" placeholder="Sök recept eller ingredienser…" autocomplete="off" />
+      </div>
+
+      <button class="list-button" id="openListBtn" aria-haspopup="dialog" aria-controls="shoppingList" aria-label="Öppna inköpslista">
+        <span class="list-icon" aria-hidden="true">🧾</span>
+        <span>Inköpslista</span>
+        <span class="badge" id="listCount">0</span>
+      </button>
+    </div>
+
+    <nav class="filters" aria-label="Snabbfilter">
+      <!-- knappars data-filter måste matcha taggar i recepten -->
+      <button class="chip" data-filter="billigt" aria-pressed="false">Billigt</button>
+      <button class="chip" data-filter="snabbt" aria-pressed="false">Snabbt</button>
+      <button class="chip" data-filter="nyttigt" aria-pressed="false">Nyttigt</button>
+      <button class="chip" data-filter="vego" aria-pressed="false">Vego</button>
+      <button class="chip" data-filter="veganskt" aria-pressed="false">Veganskt</button>
+      <button class="chip" data-filter="kyckling" aria-pressed="false">Kyckling</button>
+      <button class="chip" data-filter="kött" aria-pressed="false">Kött</button>
+      <button class="chip" data-filter="fisk" aria-pressed="false">Fisk</button>
+      <button class="chip clear-filters" id="clearFilters" title="Rensa filter">Rensa ✕</button>
+    </nav>
+  </header>
+
+  <!-- Receptgrid -->
+  <main id="recipesGrid" class="recipes" role="main" aria-live="polite"></main>
+
+  <!-- Receptmodal -->
+  <div class="modal-backdrop" id="recipeModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="recipeTitle">
+      <button class="close" id="closeRecipe" aria-label="Stäng recept">✕</button>
+      <div class="modal-header">
+        <img id="recipeImg" alt="" />
+        <div class="meta">
+          <h2 id="recipeTitle"></h2>
+          <p id="recipeInfo" class="muted"></p>
+          <div id="recipeTags" class="taglist"></div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <section>
+          <h3>Ingredienser</h3>
+          <ul id="ingredientsList" class="ingredients"></ul>
+          <button class="primary add-all" id="addAllBtn">Lägg till alla i inköpslistan</button>
+        </section>
+        <section>
+          <h3>Gör så här</h3>
+          <ol id="stepsList" class="steps"></ol>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inköpslista / Panel -->
+  <aside class="drawer" id="shoppingList" aria-hidden="true" aria-label="Inköpslista" role="dialog">
+    <div class="drawer-header">
+      <h2>Inköpslista</h2>
+      <button class="close" id="closeList" aria-label="Stäng inköpslista">✕</button>
+    </div>
+    <div class="drawer-body">
+      <ul id="listItems" class="list-items"></ul>
+      <div class="drawer-actions">
+        <button id="copyList" class="secondary">Kopiera</button>
+        <button id="downloadList" class="secondary">Ladda ner .txt</button>
+        <button id="clearList" class="linklike">Töm lista</button>
+      </div>
+      <p class="hint">Tips: Klicka på en ingrediens för att checka av den. Listan sparas automatiskt i din webbläsare.</p>
+    </div>
+  </aside>
+
+  <script src="script.js"></script>
+</body>
+</html>
